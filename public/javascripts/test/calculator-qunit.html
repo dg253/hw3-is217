@@ -1,0 +1,99 @@
+<DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>QUnit Test</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+        <link rel="stylesheet" href="../../stylesheets/normalize.css">
+        <link rel="stylesheet" href="../../stylesheets/main.css">
+		<link rel="stylesheet" href="../vendor/qunit-1.14.0.css">
+        <script src="../vendor/modernizr-2.7.1.min.js"></script>
+		<script src="../vendor/qunit-1.14.0.js"></script>
+  		<script src="../../../lib/david.js"></script>
+  <script>
+  test("prettydate.format", function() {
+    function date(then, expected) {
+      equal(prettyDate.format("2008/01/28 22:25:00", then),
+        expected);
+    }
+    date("2008/01/28 22:24:30", "just now");
+    date("2008/01/28 22:23:30", "1 minute ago");
+    date("2008/01/28 21:23:30", "1 hour ago");
+    date("2008/01/27 22:23:30", "Yesterday");
+    date("2008/01/26 22:23:30", "2 days ago");
+    date("2007/01/26 22:23:30", undefined);
+  });
+ 
+  function domtest(name, now, first, second) {
+    test(name, function() {
+      var links = document.getElementById("qunit-fixture")
+        .getElementsByTagName("a");
+      equal(links[0].innerHTML, "January 28th, 2008");
+      equal(links[2].innerHTML, "January 27th, 2008");
+      prettyDate.update(now);
+      equal(links[0].innerHTML, first);
+      equal(links[2].innerHTML, second);
+    });
+  }
+  domtest("prettyDate.update", "2008-01-28T22:25:00Z",
+    "2 hours ago", "Yesterday");
+  domtest("prettyDate.update, one day later", "2008/01/29 22:25:00",
+    "Yesterday", "2 days ago");
+  </script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <!doctype html>
+<div id="qunit"></div>
+<div id="qunit-fixture">
+ 
+<ul>
+  <li class="entry">
+    <p>blah blah blah...</p>
+    <small class="extra">
+      Posted <span class="time">
+        <a href="/2008/01/blah/57/" title="2008-01-28T20:24:17Z"
+          >January 28th, 2008</a>
+      </span>
+      by <span class="author"><a href="/john/">John Resig</a></span>
+    </small>
+  </li>
+  <li class="entry">
+    <p>blah blah blah...</p>
+    <small class="extra">
+      Posted <span class="time">
+        <a href="/2008/01/blah/57/" title="2008-01-27T22:24:17Z"
+          >January 27th, 2008</a>
+      </span>
+      by <span class="author"><a href="/john/">John Resig</a></span>
+    </small>
+  </li>
+</ul>
+ 
+</div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    </body>
+</html>
