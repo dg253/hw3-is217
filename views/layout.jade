@@ -2,7 +2,20 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    
+    link(rel='stylesheet', href='stylesheets/style.css')
+    link(rel='stylesheet', href='stylesheets/normalize.css')
+    link(rel='stylesheet', href='stylesheets/main.css')
+    link(rel='stylesheet', href='javascripts/vendor/qunit-1.14.0.css')
+    script(src='javascripts/vendor/modernizr-2.7.1.min.js')
+    script(src='javascripts/vendor/qunit-1.14.0.js')
+    script(src='lib/david.js')
+    script.
+     test("exports.add", function() {
+      function add(x, y) {
+       equal(exports.add(x, y), 20)
+      }
+      add(5, 15)
+     });
+
   body
     block content
